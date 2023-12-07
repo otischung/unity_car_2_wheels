@@ -1,0 +1,3 @@
+[submodule "Assets/Scripts"]
+	path = Assets/Scripts
+	url = git@github.com:alianlbj23/Unity_script.git
