@@ -132,3 +132,8 @@ Pay some attention to the mesh tag. It specifies the locations of the packages. 
 
 ![rename_wheels](./imgs/rename_wheels.png)
 
+
+
+# Note
+
+- The [submodule](https://github.com/alianlbj23/Unity_script) is set to the main branch because the codes in the develop branch have bugs.
