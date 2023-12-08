@@ -12,6 +12,12 @@ The Scripts/ directory in Assets/ is a submodule whose source is from [alianlbj2
 
 
 
+## Restore Scene
+
+- After cloning the repository, navigate to `Assets/Scenes/` in Unity and double-click the scene file. e.g. `SampleScene`
+
+
+
 ## Steps
 
 ### URDF Importer
@@ -72,6 +78,27 @@ Reference: https://www.nuget.org/packages/Newtonsoft.Json/
 
 
 
+### Slam
+
+You have to modify the URDF file to add the `base_footprint` link at the appropriate part.
+
+```xml
+	...
+</gazebo>
+
+<link name="base_footprint" />
+<joint name="base_joint" type="fixed">
+    <parent link="base_footprint" />
+    <child link="base_link" />
+    <origin rpy="0 0 0" xyz="0 0 0.010" />
+</joint>
+
+<link name="base_link">
+    ...
+```
+
+
+
 ### Import Your Car Model from URDF
 
 #### Structure of the URDF
@@ -128,9 +155,76 @@ Pay some attention to the mesh tag. It specifies the locations of the packages. 
 
 
 
-### Rename the wheels in Unity
+### Rename the wheels and lidar in Unity
 
 ![rename_wheels](./imgs/rename_wheels.png)
+
+> base_scan
+>
+> right_back_forward_wheel
+>
+> left_back_forward_wheel
+
+
+
+### Lidar Script
+
+1. Click on the `base_scan` component.
+2. Add the `LidarSensor.cs` component to the `base_scan`.
+
+
+
+### Robot Script
+
+1. Click on your car model name. In the case shown above, click `car_v2_copy1019`.
+2. Toggle (Uncheck) the Controller Script shown in the Inspector in Unity.
+3. Add the `Robot.cs` component to this car model object.
+
+
+
+### Setup Lidar
+
+1. Click on your car model name. In the case shown above, click `car_v2_copy1019`.
+2. Add `base_scan` component into `Lidar` field in `Robot.cs` script in the Inspector in Unity.
+
+
+
+### Motor Move Forward (Maybe doesn't need?)
+
+1. Click on your wheels.
+2. Add `MotorMoveForward.cs` into your wheel components.
+
+
+
+### Create Target
+
+1. Create a 3D object and rename it to `Target`
+2. In the inspector field, scale the object size to 0.1.
+3. Move the target to the appropriate location by moving the axes.
+
+
+
+### Create Wall, Floor, and Move to Proper Location
+
+Just create the 3D objects.
+
+頑張って
+
+
+
+### Create Anchors
+
+1. Create the empty objects
+2. Put them into the corners of the wall and assign them to either clockwise or counterclockwise order.
+3. Put them into the `TrainingManager.cs` script in the `TrainingManager` Unity object.
+
+
+
+### Training Manager
+
+1. Create a new empty Unity object and rename it to `TrainingManager`
+2. Add the `TrainingManager.cs` component to this object.
+3. Add the Target into the `Target` field in `TrainingManager.cs` script in the Inspector in Unity.
 
 
 
