@@ -167,6 +167,19 @@ Pay some attention to the mesh tag. It specifies the locations of the packages. 
 
 
 
+### (2 Wheels Car Model Only) Create a Sphere in the Front of the Car
+
+Create a sphere at the location of the structure shown above.
+
+
+
+### Add Articulation Body in base_footprint
+
+1. Click on the `base_footprint` component.
+2. Click the `Add Component` in the Inspector, search for the `Articulation Body` and add it.
+
+
+
 ### Lidar Script
 
 1. Click on the `base_scan` component.
@@ -231,3 +244,29 @@ Just create the 3D objects.
 # Note
 
 - The [submodule](https://github.com/alianlbj23/Unity_script) is set to the main branch because the codes in the develop branch have bugs.
+- Modify the `MotionSensor` class in `MotionSensor.cs`
+
+```c#
+public class MotionSensor : MonoBehaviour
+{
+    ...
+}
+```
+
+- Since we've added a `base_footprint` in our URDF car model, the `TrainManager.cs` have to match this structure.
+
+```c#
+void Start()
+{
+    base_footprint = robot.transform.Find("base_footprint");
+    baselink = base_footprint.transform.Find("base_link");
+    if (baselink == null)
+    {
+        Debug.Log("Testing");
+    }
+...
+}
+```
+
+- There are still many scripts in `TrainingManager.cs` like `Target`, `Obstacle 1`, ..., etc. You have to create empty objects and put them into these scripts. We've created and put them into the `Unneed` object.
+
