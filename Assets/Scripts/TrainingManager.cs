@@ -1,17 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Net;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Collections.Concurrent;
-using Math = System.Math;
-using System.Reflection;
+// using System.Net;
+// using System.Net.Sockets;
+// using System.Text;
+// using System.Threading;
+// using Newtonsoft.Json;
+// using Newtonsoft.Json.Linq;
+// using System.Collections.Concurrent;
+// using Math = System.Math;
+// using System.Reflection;
 using WebSocketSharp;
-using MiniJSON;
+// using MiniJSON;
 using UnityEngine.SceneManagement;
 
 public class TrainingManager : MonoBehaviour
