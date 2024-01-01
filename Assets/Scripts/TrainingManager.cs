@@ -217,7 +217,8 @@ public class TrainingManager : MonoBehaviour
 
     void MoveRobot(Vector3 pos)
     {
-        baselink.GetComponent<ArticulationBody>().TeleportRoot(pos, Quaternion.identity);
+        // baselink.GetComponent<ArticulationBody>().TeleportRoot(pos, Quaternion.identity);
+        base_footprint.GetComponent<ArticulationBody>().TeleportRoot(pos, Quaternion.identity);
     }
 
     Vector3 GetTargetPosition(GameObject obj, Vector3 pos)  // 取得 target position
