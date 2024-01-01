@@ -50,7 +50,7 @@ public class Robot : MonoBehaviour
 
         List<float> range = lidar.GetRange();
 
-        // 將每個lidar座標轉換成ros座標
+        // 將每個 lidar 座標轉換成 ros 座標
         var rangeDirection = lidar.GetRangeDirection();
         for (int i = 0; i < rangeDirection.Count; i++)
         {

@@ -64,7 +64,6 @@ public class LidarSensor : MonoBehaviour
         ranges.Clear();
         directionVectors.Clear();
         isScanning = false;
-
     }
 
     // Update is called once per frame
@@ -125,16 +124,19 @@ public class LidarSensor : MonoBehaviour
             EndScan();
         }
     }
+
     public List<float> GetRange()
     {
         // return minRange;
         return range_tmp;
     }
+
     public List<Vector3> GetRangeDirection()
     {
         // return minDirectionVector;
         return directionVectors_tmp;
     }
+
     public int GetRangeSize()
     {
         return m_NumMeasurementsTaken;

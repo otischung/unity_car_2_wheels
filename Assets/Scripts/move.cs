@@ -14,10 +14,10 @@ public class move : MonoBehaviour
     private ArticulationBody wA1;
     private ArticulationBody wA2;
 
-    public float maxLinearSpeed = 2; //  m/s
-    public float maxRotationalSpeed = 1;//
-    public float wheelRadius = 0.07f; //meters
-    public float trackWidth = 0.288f; // meters Distance between tyres
+    public float maxLinearSpeed = 2;      // m/s
+    public float maxRotationalSpeed = 1;  //
+    public float wheelRadius = 0.07f;     // meters
+    public float trackWidth = 0.288f;     // meters Distance between tyres
     public float forceLimit = 100;
     public float damping = 10;
 
@@ -38,8 +38,6 @@ public class move : MonoBehaviour
         // ros = ROSConnection.GetOrCreateInstance();
         // ros.Subscribe<TwistMsg>("cmd_vel", ReceiveROSCmd);
     }
-
-
 
     void Update()
     {
@@ -103,7 +101,6 @@ public class move : MonoBehaviour
         RobotInput(inputSpeed, inputRotationSpeed);
     }
 
-
     private void ROSUpdate()
     {
         if (Time.time - lastCmdReceived > ROSTimeout)
@@ -114,7 +111,7 @@ public class move : MonoBehaviour
         RobotInput(rosLinear, -rosAngular);
     }
 
-    private void RobotInput(float speed, float rotSpeed) // m/s and rad/s
+    private void RobotInput(float speed, float rotSpeed)  // m/s and rad/s
     {
         if (speed > maxLinearSpeed)
         {

@@ -15,8 +15,6 @@ public class MotorSteering : MonoBehaviour
     void Awake()
     {
         bd = GetComponent<ArticulationBody>();
-
-
     }
 
     public void SetAngle(float targetRadian)
@@ -62,13 +60,9 @@ public class MotorSteering : MonoBehaviour
         }
 
         // currentDrive.target += newTargetDelta;
-
-
-
         // Debug.Log("later target: " + currentDrive.target);
 
         bd.xDrive = currentDrive;
-
     }
 
     // Start is called before the first frame update

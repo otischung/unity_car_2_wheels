@@ -11,7 +11,7 @@ using UnityEngine;
 // using Math = System.Math;
 // using System.Reflection;
 using WebSocketSharp;
-// using MiniJSON;
+using MiniJSON;
 using UnityEngine.SceneManagement;
 
 public class TrainingManager : MonoBehaviour
@@ -34,6 +34,7 @@ public class TrainingManager : MonoBehaviour
 
     Vector3 newTarget;
     public System.Random random = new System.Random();
+    Transform base_footprint;
     Transform baselink;
 
     // ROS bridge format messages.
@@ -84,7 +85,8 @@ public class TrainingManager : MonoBehaviour
 
     void Awake()
     {
-        baselink = robot.transform.Find("base_link");
+        base_footprint = robot.transform.Find("base_footprint");
+        baselink = base_footprint.transform.Find("base_link");
     }
 
     void Start()
@@ -173,24 +175,24 @@ public class TrainingManager : MonoBehaviour
 
     IEnumerator DelayedSend(float delayTime, Vector3 newTarget)
     {
-        // 等待一段时间
+        // 等待一段时間
         yield return new WaitForSeconds(delayTime);
 
-        // 延迟后执行的代码
+        // 延遲後執行的程式
         State state = robot.GetState(newTarget);
         Send(state);
         key = 0;
 
-        // 如果需要的话，这里可以调用actionFinish或其他函数
+        // 如果需要的话，這裡可以使用 actionFinish 或其他函数
         // actionFinish();
     }
 
     void ReloadCurrentScene()
     {
-        // 获取当前场景的名称
+        // Get the name of the current scene.
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        // 重新加载当前场景
+        // Reload the current scene.
         SceneManager.LoadScene(currentSceneName);
     }
 
@@ -218,7 +220,7 @@ public class TrainingManager : MonoBehaviour
         baselink.GetComponent<ArticulationBody>().TeleportRoot(pos, Quaternion.identity);
     }
 
-    Vector3 GetTargetPosition(GameObject obj, Vector3 pos)  // 取得target position
+    Vector3 GetTargetPosition(GameObject obj, Vector3 pos)  // 取得 target position
     {
         Transform objTransform = obj.transform;
         pos = objTransform.position;
@@ -301,7 +303,6 @@ public class TrainingManager : MonoBehaviour
         {
             case "/AI_2_Unity":
                 HandleAI2UnityReceiveTopic(message);
-
                 break;
             case "/AI_2_Unity_RESET_flag":
                 HandleAI2UnityResetTopic(message);
@@ -461,7 +462,6 @@ public class TrainingManager : MonoBehaviour
     {
         string subscribeMessage = "{\"op\":\"subscribe\",\"id\":\"1\",\"topic\":\"" + topic + "\",\"type\":\"std_msgs/msg/Float32MultiArray\"}";
         socket.Send(subscribeMessage);
-
     }
 
     bool IsPointInsidePolygon(Vector3 point, Vector3[] polygonVertices)

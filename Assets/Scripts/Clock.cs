@@ -25,10 +25,12 @@ namespace Unity.Robotics.Core
         public const double k_NanoSecondsInSeconds = 1e9;
 
         static readonly DateTime k_UnixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+
         // Time the application started, relative to Unix Epoch
         static readonly double k_StartTimeEpochSeconds = SecondsSinceUnixEpoch - Time.realtimeSinceStartupAsDouble;
 
         static double SecondsSinceUnixEpoch => (DateTime.Now - k_UnixEpoch).TotalSeconds;
+
         static double UnityUnscaledTimeSinceFrameStart =>
             Time.realtimeSinceStartupAsDouble - Time.unscaledTimeAsDouble;
 
